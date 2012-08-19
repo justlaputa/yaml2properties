@@ -1,0 +1,8 @@
+my.test.message.warn:
+  en: Warning message
+  zh: 警告信息
+  ja: 警告メッセージ
+my.test.message.error:
+  en: Error message
+  zh: 错误信息
+  ja: エラーメッセージ
