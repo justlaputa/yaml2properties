@@ -1,4 +1,4 @@
-#!/bin/env ruby
+#!/usr/bin/env ruby
 # This is a script to convert yaml structured messages
 # in different languages to multiple Java Message.properties
 # files
@@ -7,17 +7,29 @@
 
 require 'yaml'
 
+inFile = ARGV[0] || "Messages.yml"
+
 messageFileMap =
   {"en" => File.open("Messages.properties", mode="w"),
   "zh" => File.open("Messages_zh.properties", mode="w"),
   "ja" => File.open("Messages_ja.properties", mode="w")};
 
-messageObj = YAML::load(File.open("test.yml"));
+messageObj = YAML::load(File.open(inFile));
 
 messageObj.each_pair do |key, messageMap|
   messageMap.each_pair do |lang, message|
+    s = ""
+    message = message || ""
+
     messageFileMap[lang].write(key + "=")
-    messageFileMap[lang].write(message + "\n")
+
+    if lang == "en"
+      s = message
+    else
+      message.codepoints {|c| s += "\\u" + ("%04x" % c)}
+    end
+
+    messageFileMap[lang].write(s + "\n")
   end
 end
 
