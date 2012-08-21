@@ -9,10 +9,14 @@ require 'yaml'
 
 inFile = ARGV[0] || "Messages.yml"
 
+if ! File.exist?(inFile)
+  abort("input file %s does not exist" % inFile)
+end
+
 messageFileMap =
   {"en" => File.open("Messages.properties", mode="w"),
   "zh" => File.open("Messages_zh.properties", mode="w"),
-  "ja" => File.open("Messages_ja.properties", mode="w")};
+  "ja" => File.open("Messages_ja.properties", mode="w")}
 
 messageObj = YAML::load(File.open(inFile));
 
