@@ -30,7 +30,11 @@ messageObj.each_pair do |key, messageMap|
     if lang == "en"
       s = message
     else
-      message.codepoints {|c| s += "\\u" + ("%04x" % c)}
+      if RUBY_VERSION >= "1.9.0"
+        message.codepoints {|c| s += "\\u" + ("%04x" % c)}
+      else
+        message.unpack("U*").each {|c| s += "\\u" + ("%04x" % c)}
+      end
     end
 
     messageFileMap[lang].write(s + "\n")
