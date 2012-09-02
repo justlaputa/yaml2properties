@@ -1,5 +1,4 @@
-﻿#!/usr/bin/env ruby
-require './y2p'
+﻿require './y2p'
 
 describe Yaml2Properties, 'normal behavor' do
   before do
