@@ -1,4 +1,4 @@
-source : rubygems
+source :rubygems
 
 group :test do
   gem "rake"
