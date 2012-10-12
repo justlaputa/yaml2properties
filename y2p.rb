@@ -15,12 +15,6 @@ if ! File.exist?(inFile)
   abort("input file %s does not exist" % inFile)
 end
 
-# see http://stackoverflow.com/questions/582686/should-i-define-a-main-method-in-my-ruby-scripts
-if __FILE__ == $0
-  y2p = Yaml2Properties.new()
-  y2p.run(inFile)
-end
-
 class Yaml2Properties
   def run(inFile, outDir='.')
     FileUtils.mkdir_p(outDir) if ! File.exist?(outDir)
@@ -57,4 +51,10 @@ class Yaml2Properties
       f.close
     end
   end
+end
+
+# see http://stackoverflow.com/questions/582686/should-i-define-a-main-method-in-my-ruby-scripts
+if __FILE__ == $0
+  y2p = Yaml2Properties.new()
+  y2p.run(inFile, outDir)
 end
