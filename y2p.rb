@@ -5,9 +5,11 @@
 
 # Author: laputa
 
+require 'fileutils'
 require 'yaml'
 
 inFile = ARGV[0] || "Messages.yml"
+outDir = ARGV[1] || "."
 
 if ! File.exist?(inFile)
   abort("input file %s does not exist" % inFile)
@@ -20,11 +22,14 @@ if __FILE__ == $0
 end
 
 class Yaml2Properties
-  def run(inFile)
-    messageFileMap =
-      {"en" => File.open("Messages.properties", mode="w"),
-      "zh" => File.open("Messages_zh.properties", mode="w"),
-      "ja" => File.open("Messages_ja.properties", mode="w")};
+  def run(inFile, outDir='.')
+    FileUtils.mkdir_p(outDir) if ! File.exist?(outDir)
+
+    messageFileMap = {
+      "en" => File.open("#{outDir}/Messages.properties", mode="w"),
+      "zh" => File.open("#{outDir}/Messages_zh.properties", mode="w"),
+      "ja" => File.open("#{outDir}/Messages_ja.properties", mode="w")
+    };
 
     messageObj = YAML::load(File.open(inFile));
 
