@@ -3,7 +3,7 @@
 # in different languages to multiple Java Message.properties
 # files
 
-# Author: laputa
+# version: 0.1
 
 require 'fileutils'
 require 'yaml'
