@@ -15,6 +15,8 @@ raise "No input files found" if inFiles.empty?
 class Yaml2Properties
   def run(inFiles)
 
+    puts "Generating property files..."
+
     content = ""
 
     inFiles.each {|filename|
@@ -54,6 +56,10 @@ class Yaml2Properties
     messageFileMap.each_value do |f|
       f.close
     end
+
+    puts "Successfuly generated property files:"
+    puts "Messages.properties\nMessages_ja.properties\nMessages_zh.properties"
+
   end
 end
 
