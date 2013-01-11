@@ -15,7 +15,7 @@ raise "No input files found" if inFiles.empty?
 class Yaml2Properties
   def run(inFiles)
 
-    puts "Generating property files..."
+    puts "Generating property files from: " + inFiles.join(", ")
 
     content = ""
 
