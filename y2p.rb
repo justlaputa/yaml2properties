@@ -8,13 +8,9 @@
 require 'fileutils'
 require 'yaml'
 
-inFiles = ["test.yml", "test_2.yml"]
+inFiles = Dir.glob("*.yml")
 
-inFiles.each {|file|
-  if ! File.exist?(file)
-    abort("input file %s does not exist" % file)
-  end
-}
+raise "No input files found" if inFiles.empty?
 
 class Yaml2Properties
   def run(inFiles)
