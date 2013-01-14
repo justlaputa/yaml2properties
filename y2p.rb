@@ -20,7 +20,7 @@ class Yaml2Properties
     content = ""
 
     inFiles.each {|filename|
-      File.open(filename) {|file|
+      File.open(filename, mode = "r") {|file|
         content += file.read + "\n"
       }
     }
