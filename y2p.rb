@@ -20,9 +20,9 @@ class Yaml2Properties
     content = ""
 
     inFiles.each {|filename|
-      file = File.open(filename)
-      content += file.read + "\n"
-      file.close
+      File.open(filename) {|file|
+        content += file.read + "\n"
+      }
     }
 
     messageFileMap = {
