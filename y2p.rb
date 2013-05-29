@@ -20,15 +20,15 @@ class Yaml2Properties
     content = ""
 
     inFiles.each {|filename|
-      File.open(filename, mode = "r") {|file|
+      File.open(filename, mode = "r:UTF-8") {|file|
         content += file.read + "\n"
       }
     }
 
     messageFileMap = {
-      "en" => File.open("Messages.properties", mode="w"),
-      "zh" => File.open("Messages_zh.properties", mode="w"),
-      "ja" => File.open("Messages_ja.properties", mode="w")
+      "en" => File.open("Messages.properties", mode="w:UTF-8"),
+      "zh" => File.open("Messages_zh.properties", mode="w:UTF-8"),
+      "ja" => File.open("Messages_ja.properties", mode="w:UTF-8")
     }
 
     messageObj = YAML::load(content)
